@@ -19,7 +19,7 @@
   
       // add span holding description
   
-      // this adds the delete button
+      // this ad7kids the delete button
       var deleteButtonNode = document.createElement('button');
       deleteButtonNode.addEventListener('click', function(event) {
         var newState = todoFunctions.deleteTodo(state, todo.id);
