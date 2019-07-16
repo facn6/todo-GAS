@@ -7,7 +7,10 @@
     "test": "./tests/test"
   },
   "scripts": {
-    "test": "nodemon ./tests/test.js | tap-spec"
+    "test": "node ./tests/test.js | tap-spec",
+    "monitor-tests": "nodemon ./tests/test.js | tap-spec",
+    "coverage": "nyc npm run test",
+    "report": "nyc report --reporter=lcov --reporter=text"
   },
   "repository": {
     "type": "git",
