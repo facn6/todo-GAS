@@ -18,6 +18,7 @@ const testCompleteArray = [
 // Tests
 
 test('addToDo is a pure function', function(t) {
+
   t.equal( logic.addTodo(testToDoArray, toDo3), testCompleteArray, "can add a to do object");
   t.equal(testToDoArray, [
     {id: 1, data: 'test1'},
@@ -25,7 +26,30 @@ test('addToDo is a pure function', function(t) {
   ], "does not modify original array");
   t.equal(toDo3, {data: 'test3'}, "does not modify original toDo item");
   t.equal( logic.addTodo(testToDoArray, toDo3), testCompleteArray, "returns same value, when given same argument");
-  t.equal( logic.addTodo(testCompleteArray, toDo3), testCompleteArray, "does not add a to do with an id that exists");
+  t.equal( logic.addTodo(testCompleteArray, toDo3), testCompleteArray, "does not add a todo with an id that exists");
+  
+  t.end();
+});
+
+
+
+test('deleteTodo test', function(t) {
+
+  t.equal(logic.deleteTodo(testCompleteArray, 3), testToDoArray, "returns a new array with the item deleted");
+  t.equal(testCompleteArray, [
+    {id: 1, data: 'test1'},
+    {id: 2, data: 'test2'},
+    {id: 3, data: 'test3'}
+  ], "does not modify original array");
+  t.equal(logic.deleteTodo(testToDoArray, 1), [{id: 2, data: 'test2'}], "deletes the correct object that's given by id");
+  t.equal(logic.deleteTodo(testToDoArray, 1), [{id: 2, data: 'test2'}], "returns same value, when given same argument");
+  
+  t.equal(testToDoArray, [
+    {id: 1, data: 'test1'},
+    {id: 2, data: 'test2'}
+  ], "does not modify original array");
+
+  t.equal(logic.deleteTodo(testCompleteArray, 4), testCompleteArray, "checks for deleting items do not exist");
 
   t.end();
 });
