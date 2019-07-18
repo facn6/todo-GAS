@@ -7,9 +7,11 @@
     var addTodoForm = document.getElementById('add-todo');
     
     var state = [
+
       { id: -3, description: 'Clean Home',done:false },
       { id: -2, description: 'Study React',done:false },
       { id: -1, description: 'Finish Final Project', done: false },
+
     ]; // this is our initial todoList
   
     // This function takes a todo, it returns the DOM node representing that todo
@@ -51,7 +53,6 @@
        var inputText = input.value;
        var newObj=[{id:todoFunctions.generateId(), description:inputText, done:false}];
         newState=todoFunctions.addTodo(state,newObj)
-        
         update(newState);
       });
     }
@@ -85,10 +86,12 @@
         if (event.target.tagName === 'SPAN') {
           event.target.classList.toggle('checked');
           var elemID=event.target.parentElement.id;
+
          newState=todoFunctions.markTodo(state, elemID);
          newState=todoFunctions.sortTodos(newState,sortbyStatus)
           // renderState(newState);
           //  update(newState);
+
         }
       });
       // you may want to add a class for css
