@@ -43,9 +43,7 @@
         var newState = todoFunctions.deleteTodo(state, idToDelete);  
         update(newState);
       });
-      todoNode.appendChild(deleteButtonNode);
-  
-     
+      todoNode.appendChild(deleteButtonNode);     
       return todoNode;
     };
   
@@ -65,8 +63,6 @@
        }else{
        var newObj=[{id:todoFunctions.generateId(), description:inputText, done:false}];
         newState=todoFunctions.addTodo(state,newObj)
-
-       
        }
        newState=todoFunctions.sortTodos(newState,sortbyStatus);
        update(newState);
@@ -76,9 +72,7 @@
     }
     function sortbyStatus(a, b) {
      return a.done-b.done;
-    }
-  
-   
+    }  
     // you should not need to change this function
     var update = function(newState) {
       state = newState;
