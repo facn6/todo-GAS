@@ -8,7 +8,7 @@
     
     var state = [
 
-      { id: -3, description: 'Clean Home',done:false },
+      { id: -3, description: 'Clean Home',done:true },
       { id: -2, description: 'Study React',done:false },
       { id: -1, description: 'Finish Final Project', done: false },
 
@@ -20,8 +20,17 @@
       todoNode.setAttribute("id",todo.id);
        var descriptionSpan = document.createElement('span');
       descriptionSpan.textContent=todo.description;
+      if(todo.done==true){
+          descriptionSpan.setAttribute("class","checked");
+      }else{
+        descriptionSpan.setAttribute("class","");
+
+      }
       todoNode.appendChild(descriptionSpan) 
- 
+     
+
+      
+    
       // this ad7kids the delete button
       var deleteButtonNode = document.createElement('button');
       deleteButtonNode.setAttribute('class', 'close');
@@ -36,10 +45,7 @@
       });
       todoNode.appendChild(deleteButtonNode);
   
-      // add markTodo button
-  
-      // add classes for css
-  
+     
       return todoNode;
     };
   
@@ -51,23 +57,28 @@
         event.preventDefault();
         var input = document.getElementById("item");
        var inputText = input.value;
+       if(inputText == " "||inputText==""){
+         return alert("Empty Content, Please write Something !!");
+       }
+       else if(inputText.length>50){
+         alert("You Can Add Max 50 Letters !!");
+       }else{
        var newObj=[{id:todoFunctions.generateId(), description:inputText, done:false}];
         newState=todoFunctions.addTodo(state,newObj)
-        update(newState);
+
+       
+       }
+       newState=todoFunctions.sortTodos(newState,sortbyStatus);
+       update(newState);
+        
+       input.value="";
       });
     }
     function sortbyStatus(a, b) {
      return a.done-b.done;
     }
   
-    // you should not need to change this function
-    // var update = function(newState) {
-    //   state = newState;
-    //   state = todoFunctions.sortTodos(state, sortbyStatus);
-    //   console.log(state);
-    //   window.localStorage.myList = JSON.stringify(state);
-    //   renderState(state);
-    // };
+   
     // you should not need to change this function
     var update = function(newState) {
       state = newState;
@@ -79,6 +90,7 @@
       var todoListNode = document.createElement('ul');
   
       state.forEach(function(todo) {
+        
         todoListNode.appendChild(createTodoNode(todo));
       });
       //add check marks id the note checked and changes the status
@@ -89,11 +101,10 @@
 
          newState=todoFunctions.markTodo(state, elemID);
          newState=todoFunctions.sortTodos(newState,sortbyStatus)
-          // renderState(newState);
-          //  update(newState);
+          update(newState);
 
         }
-      });
+      },false);
       // you may want to add a class for css
       container.replaceChild(todoListNode, container.firstChild);
     };
