@@ -3,11 +3,8 @@
     min-height:100%;
     font-family: Bad Script;
     background: #eba6df;  /* fallback for old browsers */
-
     background: -webkit-linear-gradient(to bottom, rgb(223, 140, 216), rgb(224, 62, 162), rgb(233, 66, 158));  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to bottom, rgb(231, 161, 216), rgb(180, 97, 136), rgb(233, 71, 139)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-
 }
 h1{
     text-transform: uppercase;
@@ -22,6 +19,7 @@ h1{
     box-sizing: border-box;
     padding: 20px;
   }
+
    .formAddToDo{
       display:flex;
       flex-direction: row;
@@ -35,24 +33,18 @@ h1{
   
   /* Style the list items */
   ul li {
-    cursor: pointer;
-    position: relative;
     padding: 12px 8px 12px 40px;
     list-style-type: none;
     background: #eee;
     font-size: 18px;
     transition: 0.2s;
-    
-    /* make the list items unselectable */
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+    text-size-adjust: 100%;
   }
   
   /* Set all odd list items to a different color (zebra-stripes) */
   ul li:nth-child(odd) {
     background: #f9f9f9;
+    text-align: start;
   }
   
   /* Darker background-color on hover */
@@ -63,7 +55,7 @@ h1{
   /* When clicked on, add a background color and strike out text */
   
    span.checked {
-    color: #fff;
+    color: gray;
     text-decoration: line-through;
   }
   
@@ -83,6 +75,7 @@ h1{
     background-color: #800c4f;
     color: white;
   }
+
   .close {
     position: absolute;
     right: 0;
@@ -99,6 +92,7 @@ h1{
     background-color: #971f16;
     color: white;
   }
+
   input[type="text"] {
     width: 100%;
     box-sizing: border-box;
@@ -110,12 +104,11 @@ h1{
     background-repeat: no-repeat;
     padding: 15px 50px 12px 40px;
     -webkit-transition: width 0.4s ease-in-out;
-
     transition: width 0.4s ease-in-out; 
-
     font-family: Bad Script;
     font-size: 30px;
   }
+
   input[type="submit"]{
       position: relative;
       font-size: 50px;
