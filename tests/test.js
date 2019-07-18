@@ -85,18 +85,30 @@ const completeArrayWithotId=[{
   }
  
 ]
+const chengedStatusArray=[{
+  id: 0,
+  description: 'smash avocados',
+  done: true
+},
+{
+  id: 1,
+  description: 'make coffee',
+  done: true
+},
+{
+  id: 2,
+  description: 'fry bacon',
+  done: false
+
+}]
 // Tests
 
 test('addToDo is a pure function', function(t) {
- // t.equal( logic.addTodo(testToDoArray, toDowithoutId), testCompleteArray, "can add a to do object");
-//  t.equal(testToDoArray, [
-//     { id: 0, description: 'smash avocados', done: true },
-//     { id: 1, description: 'make coffee', done: false }
-//   ], "does not modify original array");
-//   t.equal(toDowithoutId, { description: 'fry bacon', done: false }, "does not modify original toDo item");
-//   t.equal( logic.addTodo(testToDoArray, toDowithoutId), testCompleteArray, "returns same value, when given same argument");
-//   t.equal( logic.addTodo(testCompleteArray, toDowithoutId), testCompleteArray, "does not add a todo with an id that exists");
-  t.deepEqual( logic.addTodo(testToDoArray, toDowithoutId), completeArrayWithotId, "does not add a todo with an id that exists");
+ t.deepEqual(testToDoArray, [
+    { id: 0, description: 'smash avocados', done: true },
+    { id: 1, description: 'make coffee', done: false }
+  ], "does not modify original array");
+  t.deepEqual(toDowithoutId, { description: 'fry bacon', done: false }, "does not modify original toDo item");
   t.deepEqual(logic.addTodo(testToDoArray,toDoWithoutStatus),completeArrayWithStatus,"Failed to add note without status")
   
   t.end();
@@ -123,23 +135,20 @@ const arrayAfterDel=[{
   t.end();
 });
 
-// test('markTodo test', function(t) {
-//   t.equal(logic.markTodo(testToDoArray, 1), testToDoToggled, "returns a new array with the correct item marked");
-//   t.equal(logic.markTodo(testToDoToggled, 1), testToDoArray, "returns a new array with the correct item unmarked");  
-//   t.equal(testToDoArray, [
-//       { id: 0, description: 'smash avocados', done: true },
-//       { id: 1, description: 'make coffee', done: false }
-//     ], "does not modify original array");
-//   t.equal(logic.markTodo(testToDoArray, 1), testToDoToggled, "returns the same value, when given same arguments");
-//   t.equal(logic.markTodo(testCompleteArray, 4), testCompleteArray, "does not mark items that do not exist");
-//   t.end();
-// });
+test('markTodo test', function(t) {
+  t.deepEqual(logic.markTodo(testToDoArray, 1), testToDoToggled, "returns a new array with the correct item marked");
+  t.deepEqual(logic.markTodo(testToDoToggled, 1), testToDoArray, "returns a new array with the correct item unmarked");  
+  t.deepEqual(testToDoArray, [
+      { id: 0, description: 'smash avocados', done: true },
+      { id: 1, description: 'make coffee', done: false }
+    ], "does not modify original array");
+  t.deepEqual(logic.markTodo(testToDoArray, 1), testToDoToggled, "returns the same value, when given same arguments");
+  t.deepEqual(logic.markTodo(testCompleteArray, 4), testCompleteArray, "does not mark items that do not exist");
+  t.deepEqual(logic.markTodo(testCompleteArray,1),chengedStatusArray,"Failed to change the status !");
+  t.end();
+});
 
-//markTodo: function(todos, idToMark) {
-  // should leave the input argument todos unchanged (you can use cloneArrayOfObjects)
-  // in the new todo array, all elements will remain unchanged except the one with id: idToMark
-  // this element will have its done value toggled
-  // hint: array.map
+
 
 
 
