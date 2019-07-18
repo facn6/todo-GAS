@@ -7,9 +7,11 @@
     var addTodoForm = document.getElementById('add-todo');
     
     var state = [
-      { id: -3, description: 'first todo',done:true },
-      { id: -2, description: 'second todo',done:false },
-      { id: -1, description: 'third todo', done: false },
+
+      { id: -3, description: 'Clean Home',done:false },
+      { id: -2, description: 'Study React',done:false },
+      { id: -1, description: 'Finish Final Project', done: false },
+
     ]; // this is our initial todoList
   
     // This function takes a todo, it returns the DOM node representing that todo
@@ -54,7 +56,18 @@
         update(newState);
       });
     }
+    function sortbyStatus(a, b) {
+     return a.done-b.done;
+    }
   
+    // you should not need to change this function
+    // var update = function(newState) {
+    //   state = newState;
+    //   state = todoFunctions.sortTodos(state, sortbyStatus);
+    //   console.log(state);
+    //   window.localStorage.myList = JSON.stringify(state);
+    //   renderState(state);
+    // };
     // you should not need to change this function
     var update = function(newState) {
       state = newState;
@@ -73,7 +86,11 @@
         if (event.target.tagName === 'SPAN') {
           event.target.classList.toggle('checked');
           var elemID=event.target.parentElement.id;
-         todoFunctions.markTodo(state, elemID);
+
+         newState=todoFunctions.markTodo(state, elemID);
+         newState=todoFunctions.sortTodos(newState,sortbyStatus)
+          // renderState(newState);
+          //  update(newState);
 
         }
       });
